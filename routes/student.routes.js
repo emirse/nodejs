@@ -8,8 +8,10 @@ router.post("/", (req, res) => {
     lastName: req.body.lastName,
     studentNumber: req.body.studentNumber,
   });
-  student.save();
-  res.json(student);
+  student
+    .save()
+    .then(() => res.status(201).json({ message: "Student Created" }))
+    .catch((err) => res.json(err.message));
 });
 router.get("/", (req, res) => {
   StudentSchema.find()

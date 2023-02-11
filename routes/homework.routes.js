@@ -9,8 +9,10 @@ router.post("/", (req, res) => {
     lesson: req.body.lesson,
     score: req.body.score,
   });
-  homework.save();
-  res.json(homework);
+  homework
+    .save()
+    .then(() => res.status(201).json({ message: "Homework Created" }))
+    .catch((err) => res.json(err.message));
 });
 router.get("/", (req, res) => {
   HomeworkSchema.find()

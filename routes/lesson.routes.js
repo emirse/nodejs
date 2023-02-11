@@ -6,8 +6,10 @@ router.post("/", (req, res) => {
   const lesson = new LessonSchema({
     lessonName: req.body.lessonName,
   });
-  lesson.save();
-  res.json(lesson);
+  lesson
+    .save()
+    .then(() => res.status(201).json({ message: "Lesson Created" }))
+    .catch((err) => res.json(err.message));
 });
 router.get("/", (req, res) => {
   LessonSchema.find()

@@ -3,9 +3,15 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var StudentSchema = Schema({
-  firstName: { type: String, require: true },
-  lastName: { type: String, require: true },
-  studentNumber: { type: String, require: true },
+  firstName: {
+    type: String,
+    required: [true, "'{PATH}' alanı boş geçilemez."],
+  },
+  lastName: { type: String, required: [true, "'{PATH}' alanı boş geçilemez."] },
+  studentNumber: {
+    type: String,
+    required: [true, "'{PATH}' alanı boş geçilemez."],
+  },
   createdAt: { type: Date, default: Date.now },
 });
 
